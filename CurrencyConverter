@@ -1,0 +1,26 @@
+import java.util.Scanner;
+public class CurrencyConverter {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter base currency code (e.g., USD): ");
+        String baseCurrency = scanner.next().toUpperCase();
+        System.out.print("Enter target currency code (e.g., EUR): ");
+        String targetCurrency = scanner.next().toUpperCase();
+        System.out.print("Enter the amount to convert: ");
+        double amount = scanner.nextDouble();
+        double exchangeRate = getExchangeRate(baseCurrency, targetCurrency);
+        double convertedAmount = amount * exchangeRate;
+        System.out.printf("%.2f %s is equivalent to %.2f %s%n",
+                amount, baseCurrency, convertedAmount, targetCurrency);
+
+        scanner.close();
+    }
+    public static double getExchangeRate(String baseCurrency, String targetCurrency) {
+        if (baseCurrency.equals("USD") && targetCurrency.equals("EUR")) {
+            return 0.85; 
+        } else {
+            System.out.println("Unsupported currency pair or API error. Using default rate.");
+            return 1.0; 
+        }
+    }
+}
